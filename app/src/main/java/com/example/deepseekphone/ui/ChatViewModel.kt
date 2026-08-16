@@ -71,7 +71,7 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
             onDelta = { delta ->
                 if (!finished) {
                     val list = _messages.value.toMutableList()
-                    val last = list.lastOrNull() ?: return@streamChat
+                    val last = list.lastOrNull() ?: return@onDelta
                     list[list.size - 1] = last.copy(content = last.content + delta)
                     _messages.value = list
                 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 使用纯 Android framework 主题，不依赖 Material Components 库 -->
+    <style name="Theme.DeepSeekPhone" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#4D6BFE</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

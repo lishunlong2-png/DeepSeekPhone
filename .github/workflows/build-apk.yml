@@ -1,13 +1,14 @@
 # GitHub Actions 云编译：无需在本机安装 Android Studio / JDK / SDK
-# 用法见 README「备选：不装 Android Studio」一节
+# - 手动触发（Actions 页面 Run workflow）或推送 main 分支自动触发
+# - 编译无论成败都会上传完整日志（build-log artifact），失败时便于排查
 name: Build APK
 
 on:
   # 允许在 Actions 页面手动点按钮触发
   workflow_dispatch:
-  # 也可以配置成推 tag 自动触发，例如 v1.0.0
-  # push:
-  #   tags: ["v*"]
+  # 推送到 main 分支自动触发编译
+  push:
+    branches: [main]
 
 jobs:
   build:
@@ -27,10 +28,21 @@ jobs:
         with:
           gradle-version: "8.5"
 
+      # 编译并保留完整日志；失败也不中断（continue-on-error），确保日志能上传
       - name: 编译 Debug APK
-        run: gradle assembleDebug
+        run: gradle assembleDebug --stacktrace 2>&1 | tee /tmp/build.log
+        continue-on-error: true
+
+      - name: 上传编译日志（无论成败）
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: /tmp/build.log
+          if-no-files-found: ignore
 
       - name: 上传 APK 产物
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: app-debug-apk

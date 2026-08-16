@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 简易聊天气泡图标（白色） -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,28 C37,28 24,39 24,53 C24,60.5 28.5,67 35.5,71 L35.5,84 L48.5,76.5 C50.3,76.8 52.1,77 54,77 C71,77 84,66 84,53 C84,39 71,28 54,28 Z" />
+    <!-- 装饰点：用标准双弧画一个半径 2 的圆点 -->
+    <path
+        android:fillColor="#4D6BFE"
+        android:pathData="M43,49 m-2,0 a2,2 0 1 0 4,0 a2,2 0 1 0 -4,0" />
+</vector>
